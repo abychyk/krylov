@@ -47,6 +47,7 @@ public class DeleteApp {
 		//deleteDoc("cat");
 		deleteDoc("Pepperoni", "type", "PIZZA");
 
+
 		System.out.println("\nAll users : ");
 		List<Product> allUsers = mongoOperation.findAll(Product.class);
 		for (Product user : allUsers) {
