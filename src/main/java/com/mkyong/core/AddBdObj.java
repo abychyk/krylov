@@ -38,4 +38,20 @@ public class AddBdObj {
         }
         c.insert(document);
     }
+    public static void saveNewDoc(String[] field, String[] args, String id, DBCollection c) {
+        
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(id));
+        DBObject dbObj = c.findOne(query);
+        if (dbObj.equals(null))
+            addNewDoc(String[] field, String[] args, DBCollection c);
+        else {
+            BasicDBObject document = new BasicDBObject();
+            for (int i=1; i<field.length; i++) {
+                document.put(field[i], args[i]);
+            }
+            query = new BasicDBObject().append("_id", id);
+            c.update(query, document);
+        }
+    }
 }
